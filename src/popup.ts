@@ -30,7 +30,36 @@ summarizeBtn.addEventListener('click', async () => {
     if (!tab?.id) throw new Error('No active tab found.');
 
     // 1. Extract content from the page via content script
-    const pageData = await chrome.tabs.sendMessage(tab.id, { type: 'EXTRACT_CONTENT' });
+    let pageData;
+    try {
+      pageData = await chrome.tabs.sendMessage(tab.id, {
+        type: "EXTRACT_CONTENT",
+      });
+    } catch {
+      const url = tab.url ?? "";
+
+      if (
+        !url ||
+        url.startsWith("chrome://") ||
+        url.startsWith("chrome-extension://")
+      ) {
+        throw new Error("This extension cannot run on Chrome system pages.");
+      }
+
+      if (url.startsWith("https://chrome.google.com/webstore")) {
+        throw new Error("This extension cannot run on the Chrome Web Store.");
+      }
+
+      if (tab.status === "loading" || url === "") {
+        throw new Error(
+          "The page did not load correctly. Please check your connection and try again.",
+        );
+      }
+
+      throw new Error(
+        "Could not connect to this page. Try refreshing the tab first.",
+      );
+    }
 
     if (!pageData?.content) {
       throw new Error('Could not extract content from this page.');
