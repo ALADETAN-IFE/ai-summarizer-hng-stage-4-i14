@@ -85,11 +85,20 @@ Page title: ${title}
 Page content:
 ${content}
 
+Summarize this specific page. Be concrete and descriptive.
+
 Respond ONLY with a JSON object in this exact shape:
 {
   "bullets": ["point 1", "point 2", "point 3", "point 4", "point 5"],
   "insights": ["insight 1", "insight 2", "insight 3"],
   "readingTime": "X min read"
 }
+
+Rules:
+- bullets should capture the most important information from the page
+- bullets must reference specific details, names, or facts actually found in the content
+- insights should go beyond the obvious — draw conclusions, highlight significance, or surface non-obvious takeaways
+- avoid vague or generic statements that could apply to any page
+- No markdown, no backticks, no extra keys
 `.trim();
 }

@@ -36,6 +36,9 @@ summarizeBtn.addEventListener('click', async () => {
       throw new Error('Could not extract content from this page.');
     }
 
+    console.log("Extracted content:", pageData.content);
+    console.log("Content length:", pageData.content.length);
+
     // 2. Send to background worker for AI summarization
     const result: ExtensionResponse = await chrome.runtime.sendMessage({
       type: 'SUMMARIZE',
@@ -75,6 +78,9 @@ copyBtn.addEventListener('click', async () => {
 
 // — Helpers —
 function displaySummary(summary: SummaryResult, fromCache: boolean): void {
+  loading.hidden = true;
+  summarizeBtn.disabled = false;
+
   bulletsList.innerHTML = summary.bullets.map(b => `<li>${sanitize(b)}</li>`).join('');
   insightsList.innerHTML = summary.insights.map(i => `<li>${sanitize(i)}</li>`).join('');
   readingTimeEl.textContent = summary.readingTime;
@@ -88,6 +94,9 @@ function displaySummary(summary: SummaryResult, fromCache: boolean): void {
 function setLoading(state: boolean): void {
   loading.hidden = !state;
   summarizeBtn.disabled = state;
+  if (state) {
+    output.hidden = true;
+  }
 }
 
 function setError(msg: string | null): void {

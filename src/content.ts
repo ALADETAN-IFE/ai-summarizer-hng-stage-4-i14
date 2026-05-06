@@ -33,10 +33,12 @@ function extractPageContent(): PageData {
     clone.querySelectorAll(sel).forEach(el => el.remove());
   });
 
+  clone.querySelectorAll('script, style, noscript').forEach(el => el.remove());
+
   const content = (clone.innerText ?? clone.textContent ?? '')
     .replace(/\s+/g, ' ')
     .trim()
-    .slice(0, 15000);
+    .slice(0, 35000);
 
   return {
     title: document.title,
@@ -48,7 +50,12 @@ function extractPageContent(): PageData {
 chrome.runtime.onMessage.addListener(
   (message: ExtensionMessage, _sender: chrome.runtime.MessageSender, sendResponse: (data: PageData) => void) => {
     if (message.type === 'EXTRACT_CONTENT') {
-      sendResponse(extractPageContent());
+      const extract = () => sendResponse(extractPageContent());
+      if (document.readyState === 'complete') {
+        setTimeout(extract, 500);
+      } else {
+        window.addEventListener('load', extract, { once: true });
+      }
     }
     return true;
   }

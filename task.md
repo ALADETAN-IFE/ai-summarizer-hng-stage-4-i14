@@ -1,175 +1,171 @@
-:rocket: Frontend Wizards — Stage 4A
-Build an AI Page Summarizer Chrome Extension
+# Frontend Wizards: Stage 4A
 
-:dart: Objective
+Build an AI Page Summarizer Chrome Extension.
+
+## Objective
+
 Build a Chrome Extension (Manifest V3) that:
 
-Extracts content from the current webpage
-Sends it to an AI API
-Displays a structured summary
-Optionally highlights key points on the page
+- Extracts content from the current webpage
+- Sends it to an AI API
+- Displays a structured summary
+- Optionally highlights key points on the page
+
 This must be a real, installable, useful Chrome Extension.
 
-:brain: What the Extension Should Do
-When a user clicks the extension icon:
+## What the Extension Should Do
 
-It extracts meaningful content from the current page
-Sends it to an AI provider (OpenAI, Gemini, etc.)
-Displays:
-Bullet-point summary
-Key insights
-Estimated reading time
+When a user clicks the extension icon, it should:
 
-Optionally:
-Highlight important sections in-page
+- Extract meaningful content from the current page
+- Send it to an AI provider such as OpenAI or Gemini
+- Display:
+  - Bullet-point summary
+  - Key insights
+  - Estimated reading time
+- Optionally highlight important sections in-page
 
+## Required Features
 
+### 1. Manifest V3 Setup
 
-:jigsaw: Required Features
-
-:one: Manifest V3 Setup
 Must include:
 
-manifest.json
-Background service worker
-Popup UI
-Content script
-Proper permissions
-No deprecated Manifest V2.
+- `manifest.json`
+- Background service worker
+- Popup UI
+- Content script
+- Proper permissions
+- No deprecated Manifest V2
 
-:two: Popup UI
+### 2. Popup UI
+
 The popup must include:
 
-Page title
-“Summarize Page” button
-Loading state
-Summary output area
-Clear/reset button
+- Page title
+- `Summarize Page` button
+- Loading state
+- Summary output area
+- Clear/reset button
+
 UX expectations:
 
-Responsive
-Clean layout
-No clutter
-Keyboard accessible
-Visible focus states
+- Responsive
+- Clean layout
+- No clutter
+- Keyboard accessible
+- Visible focus states
 
+### 3. Content Script
 
-:three: Content Script
 The extension must:
 
-Extract readable page content
-Avoid navigation/sidebar clutter
-Prefer main article content if possible
+- Extract readable page content
+- Avoid navigation and sidebar clutter
+- Prefer main article content if possible
+
 Bonus:
 
-Use heuristic filtering
-Or integrate a readability parser
+- Use heuristic filtering
+- Or integrate a readability parser
 
+### 4. AI Integration
 
-:four: AI Integration
 Must:
 
-Call AI securely
-Never expose API key in frontend
-Use background script or proxy server
-You must NOT:
+- Call AI securely
+- Never expose the API key in the frontend
+- Use a background script or proxy server
 
-Hardcode API keys in content script
-Commit secrets to repo
+You must not:
 
+- Hardcode API keys in the content script
+- Commit secrets to the repo
 
-:five: Background Service Worker
+### 5. Background Service Worker
+
 Responsible for:
 
-Receiving message from popup
-Making AI API request
-Returning summary
-Handling errors
-Managing rate limiting (optional)
+- Receiving messages from the popup
+- Making the AI API request
+- Returning the summary
+- Handling errors
+- Managing rate limiting, if needed
 
+### 6. Storage
 
-:six: Storage
-Use chrome.storage to:
+Use `chrome.storage` to:
 
-Cache summaries per URL
-Prevent duplicate API calls
-Save user settings (optional)
+- Cache summaries per URL
+- Prevent duplicate API calls
+- Save user settings, optionally
 
+## Technical Requirements
 
-:package: Technical Requirements
+- Manifest V3
+- Clean file structure
+- Modular code
+- No console errors
+- Graceful error handling
+- Minimal required permissions
 
-Manifest V3
-Clean file structure
-Modular code
-No console errors
-Graceful error handling
-Minimal required permissions
+## Security Requirements
 
+- No exposed secrets
+- AI calls must be secure
+- Minimal permissions
+- Validate message passing
+- Prevent XSS injection
+- Sanitize injected content
 
-:closed_lock_with_key: Security Requirements
+## UI/UX Expectations
 
-No exposed secrets
-API calls must be secure
-Minimal permissions
-Validate message passing
-Prevent XSS injection
-Sanitize injected content
-
-
-:iphone: UI/UX Expectations
 The popup must:
 
-Show loading spinner while summarizing
-Show error message if API fails
-Display formatted summary (bullets, spacing)
-Handle long summaries gracefully
-Scroll if needed
+- Show a loading spinner while summarizing
+- Show an error message if the API fails
+- Display a formatted summary with bullets and spacing
+- Handle long summaries gracefully
+- Scroll if needed
+
 Optional:
 
-Dark/light mode
-Copy summary button
-Word count
-“Summarize in 3 bullet points” option
+- Dark/light mode
+- Copy summary button
+- Word count
+- `Summarize in 3 bullet points` option
 
+## Acceptance Criteria
 
-:test_tube: Acceptance Criteria
 You will be graded on:
 
-Extension installs correctly
-Works on most article pages
-Extracts meaningful content
-Summary generated correctly
-No exposed API keys
-Clean architecture
-Proper Chrome messaging
-Good UX polish
-Performance impact is minimal
+- Extension installs correctly
+- Works on most article pages
+- Extracts meaningful content
+- Summary generated correctly
+- No exposed API keys
+- Clean architecture
+- Proper Chrome messaging
+- Good UX polish
+- Minimal performance impact
 
+## Submission Requirements
 
+- GitHub repository
+- README including:
+  - Setup instructions
+  - Architecture explanation
+  - AI integration explanation
+  - Security decisions
+  - Trade-offs
+- Short demo video, 2-5 minutes recommended
 
-
-:package: Submission Requirements
-
-GitHub repository
-README including:
-Setup instructions
-Architecture explanation
-AI integration explanation
-Security decisions
-Trade-offs
-
-Short demo video (2–5 minutes recommended)
-
-
-Note on Installation :cy_siren:
+## Installation Note
 
 This is a local extension and is not to be uploaded to the Google Chrome Extension Store. Include steps to download and use your extension in the README section.
 
+## Submission Form
 
-
-Submission Form
-
-
-Slack Display Name (Must be unique)
-Deadline: 5th May, 2026
-[SUBMISSION LINK HERE](https://docs.google.com/forms/d/e/1FAIpQLSfwkOeNFu2L-vn6VB9ctH8OFiQkFcTujxs-nwpDhG6C84WZqA/viewform?usp=publish-editor)
+- Slack display name must be unique
+- Deadline: 5th May, 2026
+- [Submission link](https://docs.google.com/forms/d/e/1FAIpQLSfwkOeNFu2L-vn6VB9ctH8OFiQkFcTujxs-nwpDhG6C84WZqA/viewform?usp=publish-editor)
