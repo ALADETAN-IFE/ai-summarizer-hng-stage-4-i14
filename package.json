@@ -4,7 +4,7 @@
   "description": "Frontend Stage 4  - hng-stage-4(i14)",
   "main": "index.js",
   "scripts": {
-    "build": "webpack",
+    "build": "node api.js && webpack",
     "watch": "webpack --watch"
   },
   "keywords": [],
