@@ -1,0 +1,24 @@
+{
+  "name": "ai-summarizer-hng-stage-4-i14",
+  "version": "1.0.0",
+  "description": "Frontend Stage 4  - hng-stage-4(i14)",
+  "main": "index.js",
+  "scripts": {
+    "build": "webpack",
+    "watch": "webpack --watch"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "devDependencies": {
+    "@types/chrome": "^0.1.40",
+    "@types/node": "^25.6.0",
+    "copy-webpack-plugin": "^14.0.0",
+    "dotenv-webpack": "^9.0.0",
+    "ts-loader": "^9.5.7",
+    "typescript": "^6.0.3",
+    "webpack": "^5.106.2",
+    "webpack-cli": "^7.0.2"
+  }
+}

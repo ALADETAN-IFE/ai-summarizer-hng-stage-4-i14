@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI Summarizer</title>
+  <link rel="stylesheet" href="popup.css" />
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>AI Summarizer</h1>
+      <p id="page-title" class="page-title"></p>
+    </header>
+
+    <div class="actions">
+      <button id="summarize-btn" class="btn primary">Summarize Page</button>
+      <button id="clear-btn" class="btn secondary" hidden>Clear</button>
+    </div>
+
+    <div id="loading" class="loading" hidden>
+      <div class="spinner"></div>
+      <p>Summarizing...</p>
+    </div>
+
+    <div id="error" class="error" hidden></div>
+
+    <div id="output" class="output" hidden>
+      <section>
+        <h2>Summary</h2>
+        <ul id="bullets"></ul>
+      </section>
+      <section>
+        <h2>Key Insights</h2>
+        <ul id="insights"></ul>
+      </section>
+      <div class="meta">
+        <span id="reading-time"></span>
+        <span id="cache-badge" hidden>⚡ Cached</span>
+      </div>
+      <button id="copy-btn" class="btn secondary">Copy Summary</button>
+    </div>
+  </div>
+  <script src="popup.js"></script>
+</body>
+</html>
